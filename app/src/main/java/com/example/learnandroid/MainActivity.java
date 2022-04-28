@@ -6,6 +6,9 @@ import android.os.Bundle;
 
 import com.example.learnandroid.databinding.ActivityMainBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding mBinding;
     @Override
