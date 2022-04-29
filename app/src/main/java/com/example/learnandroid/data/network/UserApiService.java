@@ -7,6 +7,9 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
+/**
+ * @author hieutt (tora262)
+ */
 public interface UserApiService {
 
     @GET("api/users/{id}")

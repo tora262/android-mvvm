@@ -15,6 +15,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * @author hieutt (tora262)
+ */
 @HiltViewModel
 public class MainViewModel extends ViewModel {
     private UserRepository userRepository;

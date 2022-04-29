@@ -12,6 +12,9 @@ import com.example.learnandroid.viewmodel.MainViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
+/**
+ * @author hieutt (tora262)
+ */
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();

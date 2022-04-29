@@ -7,6 +7,9 @@ import javax.inject.Inject;
 
 import retrofit2.Call;
 
+/**
+ * @author hieutt (tora262)
+ */
 public class UserRepository {
     private UserApiService userApiService;
 

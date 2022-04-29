@@ -1,5 +1,8 @@
 package com.example.learnandroid.data.network.models;
 
+/**
+ * @author hieutt (tora262)
+ */
 public class User {
     private Long id;
     private String email;

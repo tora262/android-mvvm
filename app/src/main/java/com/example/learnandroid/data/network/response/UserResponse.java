@@ -2,6 +2,9 @@ package com.example.learnandroid.data.network.response;
 
 import com.example.learnandroid.data.network.models.User;
 
+/**
+ * @author hieutt (tora262)
+ */
 public class UserResponse {
     private User data;
 
