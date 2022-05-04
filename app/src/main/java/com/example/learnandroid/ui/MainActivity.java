@@ -4,10 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.learnandroid.R;
 import com.example.learnandroid.databinding.ActivityMainBinding;
+import com.example.learnandroid.databinding.DialogLayoutBinding;
 import com.example.learnandroid.viewmodel.MainViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -36,6 +42,12 @@ public class MainActivity extends AppCompatActivity {
         observe();
         mBinding.btnGetUser.setOnClickListener(view -> {
             viewModel.getUser(2L);
+            Dialog progressDialog = new ProgressDialog(this);
+            progressDialog.setContentView(R.layout.dialog_layout);
+//            if (progressDialog.getWindow() != null) {
+//                progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//            }
+            progressDialog.show();
         });
     }
 
