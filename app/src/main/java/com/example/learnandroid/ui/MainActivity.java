@@ -42,11 +42,13 @@ public class MainActivity extends AppCompatActivity {
         observe();
         mBinding.btnGetUser.setOnClickListener(view -> {
             viewModel.getUser(2L);
-            Dialog progressDialog = new ProgressDialog(this);
+            Dialog progressDialog = new Dialog(this);
             progressDialog.setContentView(R.layout.dialog_layout);
-//            if (progressDialog.getWindow() != null) {
-//                progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//            }
+            if (progressDialog.getWindow() != null) {
+                progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
+            progressDialog.setCancelable(false);
+            progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
         });
     }
