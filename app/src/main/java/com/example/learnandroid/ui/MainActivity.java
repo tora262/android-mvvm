@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,6 +12,7 @@ import com.example.learnandroid.databinding.ActivityMainBinding;
 import com.example.learnandroid.viewmodel.MainViewModel;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import timber.log.Timber;
 
 /**
  * @author hieutt (tora262)
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         mBinding.btnGetUser.setOnClickListener(view -> {
             viewModel.getUser(2L);
         });
+
+        mBinding.btnLaunch.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, MainActivity.class)));
     }
 
     private void observe() {
@@ -49,5 +53,11 @@ public class MainActivity extends AppCompatActivity {
             mBinding.tvEmail.setText(userResponse.toString());
         });
 
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Timber.d(intent.getAction());
     }
 }

@@ -14,6 +14,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 /**
  * @author hieutt (tora262)
@@ -36,11 +37,13 @@ public class MainViewModel extends ViewModel {
         call.enqueue(new Callback<UserResponse>() {
             @Override
             public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+                Timber.d(response.body().toString());
                 userLiveData.setValue(response.body());
             }
 
             @Override
             public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable t) {
+                Timber.d(t);
                 errorMessageLiveData.setValue(t.getMessage());
             }
         });
