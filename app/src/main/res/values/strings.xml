@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">LearnAndroid</string>
+    <string name="take_photo">Take photo</string>
+    <string name="face">Face</string>
+    <string name="armpit">Armpit</string>
+    <string name="arm">Arm</string>
+    <string name="leg">Leg</string>
 </resources>

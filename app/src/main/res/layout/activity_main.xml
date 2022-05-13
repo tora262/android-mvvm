@@ -13,12 +13,40 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_get_user"
         android:text="GET USER INFO" />
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/radio_face"
+            android:text="@string/face"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
+        <RadioButton
+            android:id="@+id/radio_armpit"
+            android:text="@string/armpit"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/radio_arm"
+            android:text="@string/arm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/radio_leg"
+            android:text="@string/leg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_launch"
-        android:text="Launch" />
+        android:enabled="false"
+        android:text="Launch camera" />
 
     <TextView
         android:layout_width="match_parent"

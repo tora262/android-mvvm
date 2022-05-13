@@ -7,7 +7,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.CompoundButton;
 
+import com.example.learnandroid.R;
+import com.example.learnandroid.common.Constants;
 import com.example.learnandroid.databinding.ActivityMainBinding;
 import com.example.learnandroid.viewmodel.MainViewModel;
 
@@ -18,10 +21,11 @@ import timber.log.Timber;
  * @author hieutt (tora262)
  */
 @AndroidEntryPoint
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     private static final String TAG = MainActivity.class.getName();
-    ActivityMainBinding mBinding;
-    MainViewModel viewModel;
+    private int mChoose = Constants.LensFacing.BACK;
+    private ActivityMainBinding mBinding;
+    private MainViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,16 +44,25 @@ public class MainActivity extends AppCompatActivity {
             viewModel.getUser(2L);
         });
 
-        mBinding.btnLaunch.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, MainActivity.class)));
+        mBinding.radioArm.setOnCheckedChangeListener(this);
+        mBinding.radioArmpit.setOnCheckedChangeListener(this);
+        mBinding.radioFace.setOnCheckedChangeListener(this);
+        mBinding.radioLeg.setOnCheckedChangeListener(this);
+
+        mBinding.btnLaunch.setOnClickListener(view -> {
+            Intent sentIntent = new Intent(MainActivity.this, CameraXPreviewActivity.class);
+            sentIntent.putExtra(Constants.LENS_FACING, mChoose);
+            startActivity(sentIntent);
+        });
     }
 
     private void observe() {
         viewModel.getErrorMessageLiveData().observe(this, errorMessage-> {
-            Log.d(TAG, "observe: errorMessage = " + errorMessage);
+            Timber.d("observe: errorMessage = " + errorMessage);
         });
 
         viewModel.getUserLiveData().observe(this, userResponse -> {
-            Log.d(TAG, "observe: userResponse = " + userResponse);
+            Timber.d("observe: userResponse = " + userResponse);
             mBinding.tvEmail.setText(userResponse.toString());
         });
 
@@ -59,5 +72,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         Timber.d(intent.getAction());
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        Timber.d("choose: " + compoundButton.getText());
+        mBinding.btnLaunch.setEnabled(true);
+        if (b) {
+            if (compoundButton.getText().toString().equals(getResources().getString(R.string.face))
+                    || compoundButton.getText().toString().equals(getResources().getString(R.string.armpit))) {
+                mChoose = Constants.LensFacing.FRONT;
+            } else {
+                mChoose = Constants.LensFacing.BACK;
+            }
+        }
     }
 }
